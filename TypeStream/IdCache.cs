@@ -32,7 +32,7 @@ namespace TypeStream
 
 		private static void ThrowIdNotFound(Type type)
 		{
-			throw new InvalidOperationException($"Type {type.FullName} isn't registered");
+			throw new InvalidOperationException($"Type {type.FullName} isn't registered. Have you forget to register a type?");
 		}
 
 		private void Cache(Type type, byte[] typeid)

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using TypeStream.Core;
 using TypeStream.Extentions;
@@ -16,8 +17,8 @@ namespace TypeStream
 		{
 			this.input = input;
 			this.output = output;
-			this.formatter = formatter;
-			this.idCache = new IdCache(idResolver);
+			this.formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
+			this.idCache = new IdCache(idResolver ?? throw new ArgumentNullException(nameof(formatter)));
 		}
 
 		public void Register<T>()

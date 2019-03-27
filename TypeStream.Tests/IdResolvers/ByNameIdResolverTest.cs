@@ -9,10 +9,11 @@ namespace TypeStream.Tests.IdResolvers
 {
 	public class ByNameIdResolverTest
 	{
-		private const string IENUMERABLE_NAME = "System.Collections.Generic.IEnumerable<" + SIMPLE_CLASS_NAME + ">";
 		private const string SIMPLE_CLASS_NAME = "TypeStream.Tests.Data.SimpleClass";
 		private const string SIMPLE_CLASS_ARRAY_NAME = SIMPLE_CLASS_NAME + "[]";
+		private const string IENUMERABLE_NAME = "System.Collections.Generic.IEnumerable<" + SIMPLE_CLASS_NAME + ">";
 		private const string GENERIC_TYPE_NAME = "System.Collections.Generic.List<" + SIMPLE_CLASS_NAME + ">";
+
 		private readonly ByNameIdResolver resolver;
 
 		public ByNameIdResolverTest()
