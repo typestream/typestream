@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TypeStream.Tests.TestDomain
+namespace TypeStream.Tests.Data
 {
 	public class SimpleClass
 	{

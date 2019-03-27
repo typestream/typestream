@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TypeStream.IdGenerators;
 using TypeStream.Json.Formatters;
-using TypeStream.Tests.TestDomain;
+using TypeStream.Tests.Data;
 using Xunit;
 
 namespace TypeStream.Tests

@@ -9,17 +9,19 @@ namespace TypeStream.IdGenerators
 	{
 		public byte[] Resolve(Type type)
 		{
+			return Encoding.UTF8.GetBytes(ResolveName(type));
+		}
+
+		public string ResolveName(Type type)
+		{
 			if (type.IsGenericType)
 			{
 				var startIndex = type.Name.IndexOf("`");
-				var genericArguments = string.Join(",", type.GenericTypeArguments.Select(o => this.Resolve(o)));
-				var fullTypeName = $"{type.Namespace}.{type.Name.Substring(0, startIndex)}<{genericArguments}>";
-				return Encoding.UTF8.GetBytes(fullTypeName);
+				var genericArguments = string.Join(",", type.GenericTypeArguments.Select(o => this.ResolveName(o)));
+				return $"{type.Namespace}.{type.Name.Substring(0, startIndex)}<{genericArguments}>";
 			}
 
-			var typeName = $"{type.Namespace}.{type.Name}";
-
-			return Encoding.UTF8.GetBytes(typeName);
+			return $"{type.Namespace}.{type.Name}";
 		}
 	}
 }
