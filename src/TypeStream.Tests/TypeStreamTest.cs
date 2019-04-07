@@ -2,34 +2,53 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using TypeStream.Abstractions;
 using TypeStream.IdGenerators;
 using TypeStream.Json.Formatters;
+using TypeStream.MessagePack.Formatters;
 using TypeStream.Tests.Data;
 using Xunit;
 
 namespace TypeStream.Tests
 {
-	public class JsonTypeStreamTest
-	{
+    public class JsonTypeStreamTest : TypeStreamTest<JsonFormatter, ByNameIdResolver>
+    {
+
+    }
+
+    public class MessagePackTypeStreamTest : TypeStreamTest<MessagePackFormatter, ByNameIdResolver>
+    {
+
+    }
+
+
+    public abstract class TypeStreamTest<TFormatter, TIdResolver>
+        where TFormatter : IFormatter, new()
+        where TIdResolver : IIdResolver, new()
+    {
 		private readonly MemoryStream memory;
 		private readonly TypeStream stream;
+        private IIdResolver idResolver;
+        private IFormatter formatter;
 
-		public JsonTypeStreamTest()
+        public TypeStreamTest()
 		{
 			this.memory = new MemoryStream();
-			this.stream = new TypeStream(this.memory, this.memory, new JsonFormatter(), new ByNameIdResolver());
+            this.formatter = new TFormatter();
+            this.idResolver = new TIdResolver();
+            this.stream = new TypeStream(this.memory, this.memory, this.formatter, this.idResolver);
 		}
 
 		[Fact]
 		public void FormatterIsRequired()
 		{
-			Assert.Throws<ArgumentNullException>(() => new TypeStream(null, null, null, new ByNameIdResolver()));
+			Assert.Throws<ArgumentNullException>(() => new TypeStream(null, null, null, this.idResolver));
 		}
 
 		[Fact]
 		public void IdResolverIsRequired()
 		{
-			Assert.Throws<ArgumentNullException>(() => new TypeStream(null, null, new JsonFormatter(), null));
+			Assert.Throws<ArgumentNullException>(() => new TypeStream(null, null, this.formatter, null));
 		}
 
 		[Fact]

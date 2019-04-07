@@ -1,13 +1,20 @@
-﻿using System;
+﻿using MessagePack;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace TypeStream.Tests.Data
 {
+    [MessagePackObject]
 	public class SimpleClass
 	{
+        [Key(0)]
 		public Guid Id { get; set; } = Guid.NewGuid();
+
+        [Key(1)]
 		public string TextId { get; set; } = Guid.NewGuid().ToString();
+
+        [Key(2)]
 		public int SomeInt32 { get; set; } = 42;
 
 		public override bool Equals(object obj)
