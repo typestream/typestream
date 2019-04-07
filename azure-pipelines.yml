@@ -1,0 +1,23 @@
+pool:
+  vmImage: 'ubuntu-18.04'
+
+steps:
+- task: DotNetCoreInstaller@0
+  inputs:
+    version: '2.1.300'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+    arguments: '--configuration Release'
+
+steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
+    
