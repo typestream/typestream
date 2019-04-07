@@ -54,26 +54,26 @@ namespace TypeStream.Tests
 		[Fact]
 		public async Task SerializeSimpleType()
 		{
-			var value = new SimpleClass();
+			var value = new Event();
 			await this.SerializeDeserialize(value);
 		}
 
 		[Fact]
 		public async Task SerializeSimpleTypeWithoutRegistration()
 		{
-			var value = new SimpleClass();
+			var value = new Event();
 			await Assert.ThrowsAsync<InvalidOperationException>(async () => await this.stream.Write(value));
 		}
 
 		[Fact]
 		public async Task SerializeGenericOfSimpleType()
 		{
-			var value = new List<SimpleClass>
+			var value = new List<Event>
 			{
-				new SimpleClass(),
-				new SimpleClass(),
-				new SimpleClass(),
-				new SimpleClass()
+				new Event(),
+				new Event(),
+				new Event(),
+				new Event()
 			};
 
 			await this.SerializeDeserialize(value);
@@ -84,16 +84,29 @@ namespace TypeStream.Tests
 		{
 			var value = new[] 
 			{
-				new SimpleClass(),
-				new SimpleClass(),
-				new SimpleClass(),
-				new SimpleClass()
+				new Event(),
+				new Event(),
+				new Event(),
+				new Event()
 			};
 
 			await this.SerializeDeserialize(value);
 		}
 
-		private async Task SerializeDeserialize<TValue>(TValue value)
+        [Fact]
+        public async Task SerializeConcretTypeDeserializeBaseType()
+        {
+            this.stream.Register<StartSession>();
+            var value = new StartSession();
+
+            await this.stream.Write(value);
+            this.memory.Seek(0, SeekOrigin.Begin);
+            var result = await this.stream.Read<Event>();
+
+            Assert.Equal(result, value);
+        }
+
+        private async Task SerializeDeserialize<TValue>(TValue value)
 		{
 			this.stream.Register<TValue>();
 

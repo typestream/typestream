@@ -6,7 +6,7 @@ using System.Text;
 namespace TypeStream.Tests.Data
 {
     [MessagePackObject]
-	public class SimpleClass
+	public class Event
 	{
         [Key(0)]
 		public Guid Id { get; set; } = Guid.NewGuid();
@@ -19,7 +19,7 @@ namespace TypeStream.Tests.Data
 
 		public override bool Equals(object obj)
 		{
-			var @class = obj as SimpleClass;
+			var @class = obj as Event;
 			return @class != null &&
 				   this.Id.Equals(@class.Id) &&
 				   this.TextId == @class.TextId &&
@@ -34,5 +34,19 @@ namespace TypeStream.Tests.Data
             hashCode = hashCode * -1521134295 + this.SomeInt32.GetHashCode();
             return hashCode;
         }
+    }
+
+    [MessagePackObject]
+    public class StartSession : Event
+    {
+        [Key(3)]
+        public Guid SessionId { get; set; } = Guid.NewGuid();
+    }
+
+    [MessagePackObject]
+    public class StopSession : Event
+    {
+        [Key(3)]
+        public Guid SessionId { get; set; } = Guid.NewGuid();
     }
 }
