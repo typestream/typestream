@@ -6,15 +6,16 @@ steps:
   inputs:
     version: '2.1.300'
 
-steps:
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
     command: build
     projects: '**/*.csproj'
     arguments: '--configuration Release'
+    majorVersion: 0
+    minorVersion: 1
+    patchVersion: 0
 
-steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: test
