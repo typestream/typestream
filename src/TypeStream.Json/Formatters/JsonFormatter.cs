@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using Newtonsoft.Json;
-using TypeStream.Core;
+using TypeStream.Abstractions;
 
 namespace TypeStream.Json.Formatters
 {

@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TypeStream\TypeStream.csproj" />
+    <ProjectReference Include="..\TypeStream.Abstractions\TypeStream.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

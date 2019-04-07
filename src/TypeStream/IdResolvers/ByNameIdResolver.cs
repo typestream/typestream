@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using TypeStream.Core;
+using TypeStream.Abstractions;
 
 namespace TypeStream.IdGenerators
 {

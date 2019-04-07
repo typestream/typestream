@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TypeStream.Core
+namespace TypeStream.Abstractions
 {
 	public interface IIdResolver
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using TypeStream.Core;
+using TypeStream.Abstractions;
 using TypeStream.Extentions;
 
 namespace TypeStream
