@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using TypeStream.Abstractions;
 
-namespace TypeStream.IdGenerators
+namespace TypeStream.IdResolvers
 {
 	public class ByNameIdResolver : IIdResolver
 	{

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using TypeStream.Abstractions;
-using TypeStream.IdGenerators;
+using TypeStream.IdResolvers;
 using TypeStream.Json.Formatters;
 using TypeStream.MessagePack.Formatters;
 using TypeStream.Tests.Data;
@@ -17,6 +17,16 @@ namespace TypeStream.Tests
     }
 
     public class MessagePackTypeStreamTest : TypeStreamTest<MessagePackFormatter, ByNameIdResolver>
+    {
+
+    }
+
+    public class JsonWithSequentialIdResolverTypeStreamTest : TypeStreamTest<JsonFormatter, SequentialIdResolver>
+    {
+
+    }
+
+    public class MessagePackSequentialIdResolverTypeStreamTest : TypeStreamTest<MessagePackFormatter, SequentialIdResolver>
     {
 
     }

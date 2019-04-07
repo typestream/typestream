@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TypeStream.IdGenerators;
+using TypeStream.IdResolvers;
 using TypeStream.Tests.Data;
 using Xunit;
 
