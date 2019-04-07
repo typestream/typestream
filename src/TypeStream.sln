@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypeStream.Tests", "TypeStr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypeStream.Abstractions", "TypeStream.Abstractions\TypeStream.Abstractions.csproj", "{2E9FF540-E33E-47D6-8C3C-CB1A8BF4B7F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeStream.MessagePack", "TypeStream.MessagePack\TypeStream.MessagePack.csproj", "{27099D04-DBF3-44FA-A893-D4CE087D2E91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypeStream.MessagePack", "TypeStream.MessagePack\TypeStream.MessagePack.csproj", "{27099D04-DBF3-44FA-A893-D4CE087D2E91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4782AE6A-9F07-41FE-B90D-7B3DAB6B3543}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2F199FBA-3B0B-4E16-97AE-17FC490EE9BA} = {4782AE6A-9F07-41FE-B90D-7B3DAB6B3543}
+		{69A22C69-3AEE-45E1-8080-4797A769E6BB} = {4782AE6A-9F07-41FE-B90D-7B3DAB6B3543}
+		{D0E302D0-5E1B-4F08-82E8-497B524EC443} = {4782AE6A-9F07-41FE-B90D-7B3DAB6B3543}
+		{2E9FF540-E33E-47D6-8C3C-CB1A8BF4B7F4} = {4782AE6A-9F07-41FE-B90D-7B3DAB6B3543}
+		{27099D04-DBF3-44FA-A893-D4CE087D2E91} = {4782AE6A-9F07-41FE-B90D-7B3DAB6B3543}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {82E775C1-9E95-444A-B704-B9080EAB44C3}

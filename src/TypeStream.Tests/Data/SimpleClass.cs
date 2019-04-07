@@ -26,9 +26,13 @@ namespace TypeStream.Tests.Data
 				   this.SomeInt32 == @class.SomeInt32;
 		}
 
-		public override int GetHashCode()
-		{
-			return HashCode.Combine(this.Id, this.TextId, this.SomeInt32);
-		}
-	}
+        public override int GetHashCode()
+        {
+            var hashCode = -1168663602;
+            hashCode = hashCode * -1521134295 + EqualityComparer<Guid>.Default.GetHashCode(this.Id);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.TextId);
+            hashCode = hashCode * -1521134295 + this.SomeInt32.GetHashCode();
+            return hashCode;
+        }
+    }
 }
