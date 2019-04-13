@@ -1,4 +1,4 @@
-# Typestream 
+# TypeStream 
 
 The goal of this library is to provide easy way to send and recieve messages between different application in realtime.
 
@@ -7,6 +7,7 @@ It doesn't take in account authorization, it just provide easy to send/recieve m
 
 Basic client example
 `
+
     public class User
     {
         public Guid Id { get; set; }
@@ -24,6 +25,7 @@ Basic client example
 
 Basic server example
 `
+
     public class User
     {
         public Guid Id { get; set; }
