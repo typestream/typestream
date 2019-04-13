@@ -110,7 +110,18 @@ namespace TypeStream.Tests
 			await this.SerializeDeserialize(value);
 		}
 
-		[Fact]
+        [Fact]
+        public async Task SerializeGenericOfSimpleTypev2()
+        {
+            var value = new RestoreMessageContainer<Event>
+            {
+                Message = new Event()
+            };
+
+            await this.SerializeDeserialize(value);
+        }
+
+        [Fact]
 		public async Task SerializeArrayOfSimpleType()
 		{
 			var value = new[] 

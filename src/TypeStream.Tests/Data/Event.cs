@@ -37,6 +37,13 @@ namespace TypeStream.Tests.Data
     }
 
     [MessagePackObject]
+    public class RestoreMessageContainer<TValue> : Event
+    {
+        [Key(3)]
+        public TValue Message { get; set; }
+    }
+
+    [MessagePackObject]
     public class StartSession : Event
     {
         [Key(3)]
