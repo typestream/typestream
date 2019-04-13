@@ -31,15 +31,36 @@ namespace TypeStream.Tests
 
     }
 
+    public class StaticMessagePackSequentialIdResolverTypeStreamTest : TypeStreamTest<StaticMessagePackFormatter, SequentialIdResolver>
+    {
+        protected override Task SerializeDeserialize<TValue>(TValue value)
+        {
+            this.formatter.Register<TValue>();
+            return base.SerializeDeserialize(value);
+        }
+
+        public async override Task SerializeConcretTypeDeserializeBaseType()
+        {
+            this.formatter.Register<StartSession>();
+            this.stream.Register<StartSession>();
+            var value = new StartSession();
+
+            await this.stream.Write(value);
+            this.memory.Seek(0, SeekOrigin.Begin);
+            var result = await this.stream.Read<Event>();
+
+            Assert.Equal(result, value);
+        }
+    }
 
     public abstract class TypeStreamTest<TFormatter, TIdResolver>
         where TFormatter : IFormatter, new()
         where TIdResolver : IIdResolver, new()
     {
-		private readonly MemoryStream memory;
-		private readonly TypeStream stream;
-        private IIdResolver idResolver;
-        private IFormatter formatter;
+		protected readonly MemoryStream memory;
+		protected readonly TypeStream stream;
+        protected TIdResolver idResolver;
+        protected TFormatter formatter;
 
         public TypeStreamTest()
 		{
@@ -104,7 +125,7 @@ namespace TypeStream.Tests
 		}
 
         [Fact]
-        public async Task SerializeConcretTypeDeserializeBaseType()
+        public virtual async Task SerializeConcretTypeDeserializeBaseType()
         {
             this.stream.Register<StartSession>();
             var value = new StartSession();
@@ -116,7 +137,7 @@ namespace TypeStream.Tests
             Assert.Equal(result, value);
         }
 
-        private async Task SerializeDeserialize<TValue>(TValue value)
+        protected virtual async Task SerializeDeserialize<TValue>(TValue value)
 		{
 			this.stream.Register<TValue>();
 
